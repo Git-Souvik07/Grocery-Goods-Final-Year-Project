@@ -12,9 +12,13 @@ if (isset($_GET['token'])) {
         if ($user['is_verified'] == 0) {
             $update = $conn->prepare("UPDATE `users` SET is_verified = 1 WHERE verify_token = ?");
             $update->execute([$token]);
-            echo "Email verification successful! You can now <a href='login.php'>log in</a>.";
+            // Redirect to login.php
+            header("Location: login.php");
+            exit;
         } else {
-            echo "Email is already verified. Please <a href='login.php'>log in</a>.";
+            echo "Email is already verified. Redirecting to login page...";
+            header("Refresh: 3; url=login.php"); // Redirect after 3 seconds
+            exit;
         }
     } else {
         echo "Invalid token or user not found.";

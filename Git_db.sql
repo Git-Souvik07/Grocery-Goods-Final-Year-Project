@@ -87,13 +87,17 @@ CREATE TABLE `products` (
 --
 
 CREATE TABLE `users` (
-  `id` int(100) NOT NULL,
+  `id` int(100) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `user_type` varchar(20) NOT NULL DEFAULT 'user',
-  `image` varchar(100) NOT NULL
+  `image` varchar(100) NOT NULL,
+  `is_verified` tinyint(1) NOT NULL DEFAULT 0,
+  `verify_token` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 -- --------------------------------------------------------
 
